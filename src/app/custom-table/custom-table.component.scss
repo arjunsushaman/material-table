@@ -1,0 +1,12 @@
+mat-card {
+    max-width: 90%;
+    margin: auto;
+    margin-top: 2em;
+    .search {
+        padding: 1em;
+        max-width: 15em;
+    }
+    .table-wrapper {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+}

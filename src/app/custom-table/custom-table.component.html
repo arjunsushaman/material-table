@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-form-field class="search">
+    <mat-label>Search </mat-label>
+    <input matInput [formControl]="searchKeywordFilter" placeholder="Type to Search" #input />
+  </mat-form-field>
+  
+  <div class="table-wrapper">  
+    <div>
+      <table mat-table [dataSource]="data" matSort matSortActive="created" matSortDisableClear
+        matSortDirection="desc">
+  
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>State</th>
+          <td mat-cell *matCellDef="let row">{{ row.state }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="created">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+            Created
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.created_at | date }}</td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  
+    <mat-paginator [length]="totalCount" [pageSizeOptions]="pageSizes" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>
+
+<div *ngIf="isLoading || limitReached">
+  <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+</div>
